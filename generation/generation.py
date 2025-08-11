@@ -1,6 +1,6 @@
 from collections import defaultdict
 
-from openai import OpenAI
+from openai import OpenAI, OpenAIError
 
 from constants import *
 
@@ -77,6 +77,9 @@ def get_llm_answer(prompt):
             max_tokens=LLM_MAX_OUTPUT_TOKENS
         )
         return response.choices[0].message.content
+    except OpenAIError as e:
+        print(f"Error while initializing OpenAI API: {e}")
+        return "You must set the OpenAI API key."
     except Exception as e:
         print(f"Error calling OpenAI API: {e}")
         return "Sorry, I encountered an error while generating the answer."
