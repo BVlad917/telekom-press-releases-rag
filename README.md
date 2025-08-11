@@ -1,6 +1,7 @@
 # Deutsche Telekom Press Releases RAG
 
--add image here-
+<img width="1720" height="766" alt="image" src="https://github.com/user-attachments/assets/742d3d93-301b-4aa2-9ad4-a701a695728b" />
+
 
 ## Components
   - a data store (Vector DB)
@@ -71,8 +72,8 @@
     2. All text information was retrieved from a press release page using the `.get_text` method from `BeautifulSoup` and then the text was split into chunks of one or multiple sentences using a tokenizer from the `nltk` library. While this avoided the issue of splitting mid-sentence, the results were still not great.
     3. **(BEST SOLUTION)** Instead of trying to split the information ourselves we can use the content split already defined in the page and created by the article's author. We can observe that a press release content is already split into headers, paragraphs, and tables:
 
-       -add image here-
-       
+       <img width="375" height="350" alt="image" src="https://github.com/user-attachments/assets/c2bd6474-a682-401b-a7fd-9ce08b79c0bf" />
+
        If we use this observation we automatically get a simple semantic splitting of the press release information without needing to develop this splitting ourselves. As for the tables from the press releases, they are parsed into strings using Python's `tabulate` library
        
   - The press release information is saved locally in a `json` file with this format:
