@@ -20,12 +20,13 @@
 
 ## Flow
 ### Main app
-1. Run this command: `docker-compose up --build -d`. This will do 3 things, in order:
+1. **Please provide your OpenAI API key in the `constants.py` file from the project root, as the `OPENAI_KEY` variable.** We could also set this as an evironment variable but at this stage this simple solution is sufficient.
+2. Run this command: `docker-compose up --build -d`. This will do 3 things, in order:
     - Start the PostgreSQL client
     - Create the databse if it doesn't exist
     - Start the streamlit app. It can be accessed locally: http://localhost:8501/
 
-2. From this point forward the user can use the streamlit app. But since we didn't scrape any data and we didn't add any data to the DB the user will not get any answer
+3. From this point forward the user can use the streamlit app. But since we didn't scrape any data and we didn't add any data to the DB the user will not get any answer
 
 ### Scraping & Data Ingestion
 1. Provided that you ran the above command you can now run both the scraper and the data ingestion from within the docker container of the main app which was already created. Go inside the container with `docker exec -it rag_app /bin/bash`
