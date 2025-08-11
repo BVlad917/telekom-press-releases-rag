@@ -1,0 +1,44 @@
+version: '3.8'
+services:
+  db:
+    image: pgvector/pgvector:pg16
+    container_name: rag_db
+    environment:
+      - POSTGRES_USER=myuser
+      - POSTGRES_PASSWORD=mypassword
+      - POSTGRES_DB=telekom_rag
+#    volumes:
+#      - postgres_data:/var/lib/postgresql/data
+    ports:
+      - "5432:5432"
+    # Healthcheck to ensure DB is ready before ingestion starts
+    healthcheck:
+      test: [ "CMD-SHELL", "pg_isready -U myuser -d telekom_rag" ]
+      interval: 5s
+      timeout: 5s
+      retries: 5
+
+  db_setup:
+    build: . # Same Dockerfile as the app
+    container_name: rag_db_creation
+    depends_on:
+      db:
+        condition: service_healthy # Wait for the DB healthcheck to pass
+    environment:
+      - DB_HOST=db
+    command: python -m database.create # Run the ingestion script instead of the Dockerfile's CMD
+
+  app:
+    build: .
+    container_name: rag_app
+    ports:
+      - "8501:8501" # Map the Streamlit port
+    depends_on:
+      - db_setup # App waits for the table to be created if it doesn't already exist
+    environment:
+      - DB_HOST=db
+    volumes:
+      - ./press_releases:/app/press_releases
+
+#volumes:
+#  postgres_data:
