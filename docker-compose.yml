@@ -7,8 +7,8 @@ services:
       - POSTGRES_USER=myuser
       - POSTGRES_PASSWORD=mypassword
       - POSTGRES_DB=telekom_rag
-#    volumes:
-#      - postgres_data:/var/lib/postgresql/data
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
     ports:
       - "5432:5432"
     # Healthcheck to ensure DB is ready before ingestion starts
@@ -38,7 +38,7 @@ services:
     environment:
       - DB_HOST=db
     volumes:
-      - ./press_releases:/app/press_releases
+      - .:/app # For persistent changes to the press_releases/ directory or if you want to change the OpenAI API key while the API is running
 
-#volumes:
-#  postgres_data:
+volumes:
+  postgres_data:
