@@ -24,7 +24,7 @@
 
 ### Main app
 1. **Please provide your OpenAI API key in the `constants.py` file from the project root, as the `OPENAI_KEY` variable.** We could also set this as an evironment variable but at this stage this simple solution is sufficient.
-2. Once in the project root, run this command: `docker-compose up --build -d`. This will do 3 things, in order:
+2. Once in the project root, run this command: `docker-compose up --build`. This will do 3 things, in order:
     - Start the PostgreSQL client
     - Create the databse if it doesn't exist
     - Start the streamlit app. It can be accessed locally: http://localhost:8501/
