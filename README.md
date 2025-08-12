@@ -19,6 +19,9 @@
 
 
 ## Flow
+
+**NB: Make sure you have both `docker` and the `docker-compose` plugin installed.**
+
 ### Main app
 1. **Please provide your OpenAI API key in the `constants.py` file from the project root, as the `OPENAI_KEY` variable.** We could also set this as an evironment variable but at this stage this simple solution is sufficient.
 2. Run this command: `docker-compose up --build -d`. This will do 3 things, in order:
