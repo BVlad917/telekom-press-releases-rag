@@ -36,7 +36,7 @@
 2. Run the scraper with `python -m scraping.scraping`. The `JSON` files with the press release contents will be saved to `/app/press_releases/`.
 3. Run the ingestion with `python -m database.ingest`. The text chunks of each press release will be embedded and saved to the vector DB.
 4. Now if the user asks a (relevant) question in the web app, they should get a response.
-5. You can stop the application with: `docker-compose down --volumes`.
+5. You can stop the application with: `docker-compose down`.
 
 
 ## Development
